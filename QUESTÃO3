@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questão 3: tentando mudar Cor de Fundo</title>
+    <style>
+        body {
+            /* Cor padrão */
+            background-color: lightgray;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            transition: background-color 0.5s ease; /* Transição suave para a mudança de cor */
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        button {
+            background-color: #6c757d;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        button:hover {
+            background-color: #5a6268;
+        }
+    </style>
+</head>
+<body>
+    <h1>Clique no botão para mudar a cor de fundo!</h1>
+    
+    <button onclick="mudarCorFundo()">Mudar Cor</button>
+
+    <script>
+        function mudarCorFundo() {
+            const cores = ['red', 'blue', 'green', 'orange', 'purple'];
+
+            const indiceAleatorio = Math.floor(Math.random() * cores.length);
+            
+            const corSelecionada = cores[indiceAleatorio];
+            
+            document.body.style.backgroundColor = corSelecionada;
+
+            console.log("Cor alterada para: " + corSelecionada);
+        }
+    </script>
+</body>
+</html>
