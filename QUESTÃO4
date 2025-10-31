@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questão 4: Possivel calculadora de IMC</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #f0f8ff;
+            margin: 0;
+        }
+
+        .imc-card {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            max-width: 350px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            color: #2e8b57;
+            margin-bottom: 25px;
+            font-size: 1.8em;
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            margin-top: 15px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input[type="number"] {
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100%;
+            box-sizing: border-box;
+            font-size: 1em;
+        }
+
+        button {
+            background-color: #3cb371; /* Verde Bonito */
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1.1em;
+            margin-top: 25px;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #2e8b57;
+        }
+
+        #resultado {
+            margin-top: 25px;
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        #classificacao {
+            margin-top: 10px;
+            font-size: 1em;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="imc-card">
+        <h1>Calculadora de IMC</h1>
+        
+        <label for="peso">Peso (KG):</label>
+        <input type="number" id="peso" placeholder="Ex: 70.5" step="0.01" required>
+
+        <label for="altura">Altura (M):</label>
+        <input type="number" id="altura" placeholder="Ex: 1.75" step="0.01" required>
+        
+        <button onclick="calcularIMC()">Calcular IMC</button>
+        
+        <p id="resultado">Seu IMC é:</p>
+        <p id="classificacao"></p>
+    </div>
+
+    <script>
+        function calcularIMC() {
+            
+            const peso = parseFloat(document.getElementById('peso').value);
+            const altura = parseFloat(document.getElementById('altura').value);
+            
+            const resultadoElement = document.getElementById('resultado');
+            const classificacaoElement = document.getElementById('classificacao');
+
+            if (isNaN(peso) || isNaN(altura) || peso <= 0 || altura <= 0) {
+                resultadoElement.textContent = "Seu IMC é: Erro";
+                classificacaoElement.textContent = "Insira Peso e Altura válidos.";
+                return;
+            }
+
+            const imc = peso / (altura * altura);
+
+            let classificacao;
+            if (imc < 18.5) {
+                classificacao = "Abaixo do peso";
+            } else if (imc < 24.9) {
+                classificacao = "Peso normal";
+            } else if (imc < 29.9) {
+                classificacao = "Sobrepeso";
+            } else if (imc < 34.9) {
+                classificacao = "Obesidade Grau I";
+            } else if (imc < 39.9) {
+                classificacao = "Obesidade Grau II";
+            } else {
+                classificacao = "Obesidade Grau III (Mórbida)";
+            }
+
+            resultadoElement.textContent = `Seu IMC é: ${imc.toFixed(2)}`;
+            classificacaoElement.textContent = `Classificação: ${classificacao}`;
+        }
+    </script>
+</body>
+</html>
